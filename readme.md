@@ -1,4 +1,4 @@
-# loan
+# defi-loan
 **loan** is a blockchain built using Cosmos SDK and Tendermint and created with [Ignite CLI](https://ignite.com/cli).
 
 ## Get started
@@ -23,6 +23,46 @@ These commands can be run within your scaffolded blockchain project.
 
 
 For more information see the [monorepo for Ignite front-end development](https://github.com/ignite/web).
+
+## Interacting with the blockchain
+
+### Request a Loan
+
+```
+loand tx loan request-loan 1000token 100token 1000foocoin 500 --from alice --chain-id loan
+```
+
+### Approve a Loan
+
+```
+loand tx loan approve-loan 0 --from bob --chain-id loan
+```
+
+### Repay a Loan
+
+```
+loand tx loan repay-loan 0 --from alice --chain-id loan
+```
+
+### Liquidate a Loan
+
+```
+loand tx loan request-loan 1000token 100token 1000foocoin 20 --from alice --chain-id loan -y
+loand tx loan approve-loan 1 --from bob --chain-id loan -y
+loand tx loan liquidate-loan 1 --from bob --chain-id loan -y
+```
+
+### List all loans
+
+```
+loand q loan list-loan
+```
+
+### Query the blockchain to see changes in balances
+
+```
+loand q bank balances $(loand keys show alice -a)
+```
 
 ## Release
 To release a new version of your blockchain, create and push a new tag with `v` prefix. A new draft release with the configured targets will be created.
@@ -49,4 +89,3 @@ curl https://get.ignite.com/username/loan@latest! | sudo bash
 - [Ignite CLI docs](https://docs.ignite.com)
 - [Cosmos SDK docs](https://docs.cosmos.network)
 - [Developer Chat](https://discord.gg/ignite)
-# defi-loan
